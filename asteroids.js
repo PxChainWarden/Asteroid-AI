@@ -1,6 +1,6 @@
 function Asteroid(p,s, r, g, b){
     //random velocity for asteroids
-    this.velocity = createVector(random(-5,5),random(-5,5));
+    this.velocity = p5.Vector.fromAngle(radians(random(0, 360)), 5);
 	//rgb values for asteroids color
 	if(r)
 		this.r = r;
