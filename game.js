@@ -17,6 +17,7 @@ var Game = function(){
 	this.gen = [];
 	this.alives = 0;
 	this.generation = 0;
+	this.maxScore = 0;
     this.setup = function(){
         createCanvas(1024,768);
     }
@@ -45,6 +46,8 @@ var Game = function(){
                 }
                 //update the ship. asteroids and all kinda stuff will be updated in this function
                 this.ships[i].update();
+		if(this.maxScore < this.ships[i].score)
+			this.maxScore = this.ships[i].score;
                 //if ship is dead
                 if(this.ships[i].gameOver == true){
                     this.alives--;
@@ -55,9 +58,6 @@ var Game = function(){
                     }
                 }
     
-            }
-            if(this.isItEnd()){
-                this.start();
             }
         }
         var self = this;
@@ -85,6 +85,7 @@ var Game = function(){
         push();
         textSize(32);
         fill(255, 255, 255);
+	text('Max Score: '+this.maxScore.toFixed(1), 10, 30);
         text('Gen: '+this.generation, width - 150, 30);
         pop();
     }
@@ -102,7 +103,7 @@ var Game = function(){
 
 Game.prototype.start = function(){
     this.ships = [];
-
+    this.maxScore = 0;
     this.gen = Neuvol.nextGeneration();
     for(var i in this.gen){
         var a = new Ship();
