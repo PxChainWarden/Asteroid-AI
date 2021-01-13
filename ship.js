@@ -215,12 +215,6 @@ function Ship() {
             for(var i = this.bullets.length -1; i >= 0; i--)
                 if(this.bullets[i].dist >= 750)
                     this.bullets.splice(i,1);
-        
-            push();
-            textSize(32);
-            fill(255, 255, 255);
-            text('Score: '+this.score.toFixed(1), 10, 30);
-            pop();
             //if there is no asteroids make more of 'em
             if(this.asteroids.length == 0){
                 this.asteroidCount++;
